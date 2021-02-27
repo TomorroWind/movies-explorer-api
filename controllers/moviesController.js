@@ -1,6 +1,7 @@
 const { notFoundError } = require('../helpers/errors');
 const handleDbError = require('../helpers/handleDbError');
 const Movie = require('../models/movie');
+const { messages } = require('../const');
 
 const getMovies = (req, res, next) => {
   Movie.find({ owner: req.user._id })
@@ -19,7 +20,7 @@ const createMovie = (req, res, next) => {
 
 const deleteMovie = (req, res, next) => {
   Movie.findByIdAndRemove(req.params.id)
-    .orFail(() => notFoundError('Фильм не найден'))
+    .orFail(() => notFoundError(messages.movieNotFound))
     .then((removedMovie) => res.json(removedMovie))
     .catch((err) => handleDbError(err, next));
 };

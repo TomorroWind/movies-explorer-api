@@ -1,55 +1,56 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const { messages } = require('../const');
 
 const movieSchema = new mongoose.Schema({
   movieId: {
     type: String,
-    required: [true, 'Поле movieId обязательно для заполнения'],
+    required: [true, messages.fieldIsRequired],
   },
   country: {
     type: String,
-    required: [true, 'Поле country обязательно для заполнения'],
+    required: [true, messages.fieldIsRequired],
   },
   director: {
     type: String,
-    required: [true, 'Поле director обязательное для заполнения'],
+    required: [true, messages.fieldIsRequired],
   },
   duration: {
     type: Number,
-    required: [true, 'Поле duration обязательное для заполнения'],
+    required: [true, messages.fieldIsRequired],
   },
   year: {
     type: String,
     minlength: 2,
     maxlength: 4,
-    required: [true, 'Поле year обязательное для заполнения'],
+    required: [true, messages.fieldIsRequired],
   },
   description: {
     type: String,
-    required: [true, 'Поле description обязательное для заполнения'],
+    required: [true, messages.fieldIsRequired],
   },
   image: {
     type: String,
-    required: [true, 'Поле image обязательное для заполнения'],
+    required: [true, messages.fieldIsRequired],
     validate: {
       validator: (value) => validator.isURL(value),
-      message: 'Поле должно быть ссылкой',
+      message: messages.notValidUrl,
     },
   },
   trailer: {
     type: String,
-    required: [true, 'Поле trailer обязательное для заполнения'],
+    required: [true, messages.fieldIsRequired],
     validate: {
       validator: (value) => validator.isURL(value),
-      message: 'Поле должно быть ссылкой',
+      message: messages.notValidUrl,
     },
   },
   thumbnail: {
     type: String,
-    required: [true, 'Поле thumbnail обязательное для заполнения'],
+    required: [true, messages.fieldIsRequired],
     validate: {
       validator: (value) => validator.isURL(value),
-      message: 'Поле должно быть ссылкой',
+      message: messages.notValidUrl,
     },
   },
   owner: {
@@ -59,11 +60,11 @@ const movieSchema = new mongoose.Schema({
   },
   nameRU: {
     type: String,
-    required: [true, 'Поле nameRU обязательное для заполнения'],
+    required: [true, messages.fieldIsRequired],
   },
   nameEN: {
     type: String,
-    required: [true, 'Поле nameEN обязательное для заполнения'],
+    required: [true, messages.fieldIsRequired],
   },
 });
 

@@ -1,9 +1,10 @@
 const { notFoundError } = require('../helpers/errors');
 const handleDbError = require('../helpers/handleDbError');
 const User = require('../models/user');
+const { messages } = require('../const');
 
 const getMe = (req, res, next) => {
-  User.findById(req.user._id).orFail(notFoundError('Пользователь не найден'))
+  User.findById(req.user._id).orFail(notFoundError(messages.userNotFound))
     .then((user) => res.json(user))
     .catch((err) => handleDbError(err, next));
 };
@@ -15,7 +16,7 @@ const updateMe = (req, res, next) => {
       new: true,
       runValidators: true,
     })
-    .orFail(notFoundError('Пользователь не найден'))
+    .orFail(notFoundError(messages.userNotFound))
     .then((updatedUser) => res.json(updatedUser))
     .catch((err) => handleDbError(err, next));
 };
