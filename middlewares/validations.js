@@ -1,7 +1,7 @@
 const { celebrate } = require('celebrate');
 const Joi = require('joi');
 const { default: validator } = require('validator');
-const { messages } = require('../config');
+const { messages } = require('../const');
 
 const validateUrl = (value, helpers) => {
   if (validator.isURL(value, { require_protocol: true })) {
